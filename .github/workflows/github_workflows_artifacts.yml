@@ -1,7 +1,7 @@
 name: GitHub Workflows Artifacts
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main",  "feature/github_actions_artifacts"]
   pull_request:
     branches: [ "main" ]
 
