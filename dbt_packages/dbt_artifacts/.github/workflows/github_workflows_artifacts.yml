@@ -1,5 +1,6 @@
 name: GitHub Workflows Artifacts
-on: [push]
+  push:
+    branches: [ "main" ]
 jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
