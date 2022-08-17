@@ -1,0 +1,25 @@
+#default:
+#  outputs:
+#    dev:
+#      account:
+#      database: dbt_metrics
+#      password:
+#      role: accountadmin
+#      schema: artifacts
+#      threads: 1
+#      type: snowflake
+#      user:
+#      warehouse: compute_wh
+#
+#    prd:
+#      account:
+#      database: dbt_metrics
+#      password:
+#      role: accountadmin
+#      schema: metrics
+#      threads: 1
+#      type: snowflake
+#      user:
+#      warehouse: compute_wh
+#
+#  target: dev

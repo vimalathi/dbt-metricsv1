@@ -1,0 +1,11 @@
+.idea
+
+target/
+dbt_modules/
+dbt_packages/
+logs/
+
+.vscode/
+Pipfile
+Pipfile.lock
+env.sh
