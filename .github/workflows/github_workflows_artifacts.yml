@@ -18,17 +18,19 @@ jobs:
         run: |
           pwd
           pip install -r pyfiles/requirements.txt
+          python3 pyfiles/load_context.py \
+            --context=${{ toJSON(github) }}
 
-      - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
-      - name: Dump steps context
-        run: echo '${{ toJSON(steps) }}'
-      - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'
-      - name: Dump strategy context
-        run: echo '${{ toJSON(strategy) }}'
-      - name: Dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
+#      - name: Dump job context
+#        run: echo '${{ toJSON(job) }}'
+#      - name: Dump steps context
+#        run: echo '${{ toJSON(steps) }}'
+#      - name: Dump runner context
+#        run: echo '${{ toJSON(runner) }}'
+#      - name: Dump strategy context
+#        run: echo '${{ toJSON(strategy) }}'
+#      - name: Dump matrix context
+#        run: echo '${{ toJSON(matrix) }}'
 #      - name: Dump GitHub context
 #        id: github_context_step
 #        run: echo '${{ toJSON(github) }}'

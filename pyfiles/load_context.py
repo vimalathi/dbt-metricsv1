@@ -25,17 +25,18 @@ parser.add_argument(
     required=True,
     help="sql statement to execute",
 )
-args = parser.parse_args(['--context', context])
-print(args.context)
+# args = parser.parse_args(['--context', context])
+args = parser.parse_args()
+print(f'args.context: {args.context}')
 # print(json.dumps(args.context))
 # sql = f"INSERT INTO dbt_metrics.artifacts.github_context (content) SELECT PARSE_JSON(column1) as content FROM VALUES ('{json.dumps(args.context)}'); "
-print(json.loads(args.context))
+print(f'json.loads(args.context): {json.loads(args.context)}')
 sql = f"INSERT INTO dbt_metrics.artifacts.github_context (content) SELECT PARSE_JSON(column1) as content FROM VALUES ('{args.context}'); "
 
 print(sql)
-# exit(1)
+exit(1)
 
-# args = parser.parse_args()
+
 # Connect to database
 print("Connecting to Snowflake Database")
 con = snowflake.connector.connect(
