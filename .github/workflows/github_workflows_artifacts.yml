@@ -16,10 +16,10 @@ jobs:
         name: Dump github context to snowflake table dbt_metrics.artifacts.github_context
         working-directory: '/Users/vimbalak/colgate/dbt-metricsv1/'
         run: |
-          pwd
+          echo '${{ toJSON(github) }}'
           pip install -r pyfiles/requirements.txt
           python3 pyfiles/load_context.py \
-            --context=${{ toJSON(github) }}
+            --context='${{ toJSON(github) }}'
 
 #      - name: Dump job context
 #        run: echo '${{ toJSON(job) }}'
