@@ -14,7 +14,7 @@ jobs:
     steps:
       - id: DumpGithubContextToSnowflake
         name: Dump github context to snowflake table dbt_metrics.artifacts.github_context
-        working-directory: '/'
+        working-directory: '/Users/vimbalak/colgate/dbt-metricsv1/'
         run: |
           pwd
           pip install -r pyfiles/requirements.txt
