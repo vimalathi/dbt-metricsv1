@@ -16,6 +16,7 @@ jobs:
         name: Dump github context to snowflake table dbt_metrics.artifacts.github_context
         working-directory: '/'
         run: |
+          pwd
           pip install -r pyfiles/requirements.txt
 
       - name: Dump job context
