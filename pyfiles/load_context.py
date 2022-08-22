@@ -34,7 +34,7 @@ print(f'json.loads(args.context): {json.loads(args.context)}')
 sql = f"INSERT INTO dbt_metrics.artifacts.github_context (content) SELECT PARSE_JSON(column1) as content FROM VALUES ('{args.context}'); "
 
 print(sql)
-exit(1)
+# exit(1)
 
 
 # Connect to database
