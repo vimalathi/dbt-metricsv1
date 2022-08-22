@@ -12,12 +12,6 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
     steps:
-      - id: pyinit
-        name: Initialize Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.8.x"
-
       - id: DumpGithubContextToSnowflake
         name: Dump github context to snowflake table dbt_metrics.artifacts.github_context
         working-directory: '/'
