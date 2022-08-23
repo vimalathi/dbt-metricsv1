@@ -44,6 +44,15 @@ vars:
 #  dbt_artifacts_database: your_db # optional, default is your target database
 #  dbt_artifacts_schema: your_schema # optional, default is your target schema
 
+#  env_vars: [
+#    'ENV_VAR_1',
+#    'ENV_VAR_2'
+#  ]
+#  dbt_vars: [
+#    'var_1',
+#    'var_2'
+#  ]
+
 models:
   dbt_metrics:
     # Config indicated by + and applies to all files under models/example/

@@ -1,25 +1,70 @@
 name: GitHub Workflows Artifacts
 on:
   push:
-    branches: [ "main",  "feature/github_actions_artifacts"]
+    branches: [ "main", "feature/github_actions_artifacts"]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
 
     # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  Explore-GitHub-Actions:
+  job1:
     runs-on: self-hosted
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - id: job1step1
+        name: Dump github context to snowflake table dbt_metrics.artifacts.github_context
+        working-directory: '/Users/vimbalak/colgate/dbt-metricsv1/'
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          pip install -r pyfiles/requirements.txt
+          python3 pyfiles/load_context.py \
+            --context='${{ toJSON(github) }}'
+      - id: job1Step2
+        run: |
+          echo 'i am job1step2'
+          echo '${{ toJSON(github) }}'
+      - id: job1step3
+        run: |
+          echo 'i am job2step1'
+          echo '${{ toJSON(steps) }}'
+      - id: job1step4
+        run: |
+          echo 'i am job2step2'
+          echo '${{ toJSON(job) }}'
+
+  job2:
+    runs-on: self-hosted
+    steps:
+      - id: job2step1
+        run: |
+          echo 'i am job2step1'
+          echo '${{ toJSON(steps) }}'
+      - id: job2step2
+        run: |
+          echo 'i am job2step2'
+          echo '${{ toJSON(job) }}'
+
+#      - name: Dump job context
+#        run: echo '${{ toJSON(job) }}'
+#      - name: Dump steps context
+#        run: echo '${{ toJSON(steps) }}'
+#      - name: Dump runner context
+#        run: echo '${{ toJSON(runner) }}'
+#      - name: Dump strategy context
+#        run: echo '${{ toJSON(strategy) }}'
+#      - name: Dump matrix context
+#        run: echo '${{ toJSON(matrix) }}'
+#      - name: Dump GitHub context
+#        id: github_context_step
+#        run: echo '${{ toJSON(github) }}'
+#       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+#       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+#       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+#       - name: Check out repository code
+#         uses: actions/checkout@v3
+#       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+#       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+#       - name: List files in the repository
+#         run: |
+#           ls ${{ github.workspace }}
+#       - run: echo "🍏 This job's status is ${{ job.status }}."
