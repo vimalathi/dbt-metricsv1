@@ -9,10 +9,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  Explore-GitHub-Actions:
+  job1:
     runs-on: self-hosted
     steps:
-      - id: DumpGithubContextToSnowflake
+      - id: job1step1
         name: Dump github context to snowflake table dbt_metrics.artifacts.github_context
         working-directory: '/Users/vimbalak/colgate/dbt-metricsv1/'
         run: |
@@ -20,6 +20,16 @@ jobs:
           pip install -r pyfiles/requirements.txt
           python3 pyfiles/load_context.py \
             --context='${{ toJSON(github) }}'
+      - id: job1Step2
+        run: echo 'i am job1step2'
+
+  job2:
+    runs-on: self-hosted
+    steps:
+      - id: job2step1
+        run: echo 'i am job2step1'
+      - id: job2step2
+        run: echo 'i am job2step2'
 
 #      - name: Dump job context
 #        run: echo '${{ toJSON(job) }}'
