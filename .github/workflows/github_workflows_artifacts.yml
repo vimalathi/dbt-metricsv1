@@ -26,9 +26,9 @@ jobs:
       - id: getTheModels
         run: |
           models=$(dbt ls)
-          models="${models//'%'/'%25'}"
-          models="${models//$'\n'/'%0A'}"
-          models="${models//$'\r'/'%0D'}"
+          echo "models<<EOF" >> $GITHUB_ENV
+          echo "models" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
           echo "::set-output name=model::$models"
       - id: getEndDateTime
         name: get current date and time as workflow end date and time
@@ -37,7 +37,7 @@ jobs:
         run: |
           echo '${{ steps.getStartDateTime.outputs.startDateTime }}'
           echo '${{ steps.getEndDateTime.outputs.endDateTime }}'
-          echo '${{ steps.getTheModels.outputs.model }}'
+          echo '${{ env.models }}'
 
 
 
