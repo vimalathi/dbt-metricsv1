@@ -27,7 +27,7 @@ jobs:
         run: |
           models=$(dbt ls)
           echo "models<<EOF" >> $GITHUB_ENV
-          echo "models" >> $GITHUB_ENV
+          echo "$models" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
           echo "::set-output name=model::$models"
       - id: getEndDateTime
