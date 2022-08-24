@@ -13,9 +13,9 @@ jobs:
   job1:
     runs-on: self-hosted
     steps:
-      - id: getStartTime
-        name: get current time as workflow start time
-        run: echo '${{ steps.date.outputs.today }}'
+      - id: getStartDateTime
+        name: get current date and time as workflow start date and time
+        run: echo "::set-output name=startDateTime::$(date +%Y%m%d%H%M%s)"
       - id: job1step1
         name: Dump github context to snowflake table dbt_metrics.artifacts.github_context
         working-directory: '/Users/vimbalak/colgate/dbt-metricsv1/'
@@ -23,9 +23,14 @@ jobs:
           pip install -r pyfiles/requirements.txt
           python3 pyfiles/load_context.py \
             --context='${{ toJSON(github) }}'
-      - id: getEndTime
-        name: get current time as workflow end time
-        run: echo '${{ steps.date.outputs.today }}'
+      - id: getEndDateTime
+        name: get current date and time as workflow end date and time
+        run: echo "::set-output name=endDateTime::$(date +%Y%m%d%H%M%s)"
+      - id: printStartEndTime
+        run: |
+          echo '${{ steps.getStartDateTime.outputs.startDateTime }}'
+          echo '${{ steps.getEndDateTime.outputs.endDateTime }}'
+
 
 #      - id: job1Step2
 #        run: |
