@@ -26,6 +26,9 @@ jobs:
       - id: getTheModels
         run: |
           models=$(dbt ls)
+          models="${models//'%'/'%25'}"
+          models="${models//$'\n'/'%0A'}"
+          models="${models//$'\r'/'%0D'}"
           echo "::set-output name=models::$models"
       - id: getEndDateTime
         name: get current date and time as workflow end date and time
