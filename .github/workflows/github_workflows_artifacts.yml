@@ -36,8 +36,8 @@ jobs:
           echo 'i am job2step2'
           echo '${{ toJSON(job) }}'
       - id: getEndTime
-          name: get current time as workflow end time
-          run: echo ${{ steps.date.outputs.today }}
+        name: get current time as workflow end time
+        run: echo ${{ steps.date.outputs.today }}
 
   job2:
     runs-on: self-hosted
