@@ -23,13 +23,17 @@ jobs:
           pip install -r pyfiles/requirements.txt
           python3 pyfiles/load_context.py \
             --context='${{ toJSON(github) }}'
+      - id: getTheModels
+        run: echo "::set-output name=models::$dbt ls --state ../prior_state
       - id: getEndDateTime
         name: get current date and time as workflow end date and time
         run: echo "::set-output name=endDateTime::$(date +%Y%m%d%H%M%s)"
-      - id: printStartEndTime
+      - id: printOutputs
         run: |
           echo '${{ steps.getStartDateTime.outputs.startDateTime }}'
           echo '${{ steps.getEndDateTime.outputs.endDateTime }}'
+          echo '${{ steps.getTheModels.outputs.models }}'
+
 
 
 #      - id: job1Step2
