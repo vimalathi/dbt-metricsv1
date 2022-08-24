@@ -24,7 +24,7 @@ jobs:
           python3 pyfiles/load_context.py \
             --context='${{ toJSON(github) }}'
       - id: getTheModels
-        run: echo '::set-output name=models::$(dbt ls)'
+        run: echo "::set-output name=models::$(dbt ls)"
       - id: getEndDateTime
         name: get current date and time as workflow end date and time
         run: echo "::set-output name=endDateTime::$(date +%Y%m%d%H%M%s)"
