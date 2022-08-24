@@ -29,7 +29,7 @@ jobs:
           models="${models//'%'/'%25'}"
           models="${models//$'\n'/'%0A'}"
           models="${models//$'\r'/'%0D'}"
-          echo "::set-output name=models::$models"
+          echo "::set-output name=model::$models"
       - id: getEndDateTime
         name: get current date and time as workflow end date and time
         run: echo "::set-output name=endDateTime::$(date +%Y%m%d%H%M%s)"
@@ -37,7 +37,7 @@ jobs:
         run: |
           echo '${{ steps.getStartDateTime.outputs.startDateTime }}'
           echo '${{ steps.getEndDateTime.outputs.endDateTime }}'
-          echo '${{ steps.getTheModels.outputs.models }}'
+          echo '${{ steps.getTheModels.outputs.model }}'
 
 
 
